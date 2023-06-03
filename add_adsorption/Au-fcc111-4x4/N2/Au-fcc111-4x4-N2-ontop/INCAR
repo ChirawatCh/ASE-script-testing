@@ -1,0 +1,45 @@
+SYSTEM = Slab Fe 1x1 4Layers
+NWRITE =2
+ISTART =0    
+ICHARG =2    
+LWAVE = F
+LCHARG = F
+
+#Electronic Relaxation 1
+PREC = Accurate
+ENCUT = 450     
+NELM   = 100   
+EDIFF  = 1E-06 
+EDIFFG =  -.02
+
+#NELMIN = 4
+IDIPOL = 3
+
+#Ionic Relaxation
+NSW    = 5000     
+IBRION = 2       
+ISIF   = 2       
+ISYM   = 0       
+POTIM  = 0.25  
+
+#DOS related values:
+ISMEAR =  0 
+SIGMA  =  0.05 
+
+#Electronic Relaxation
+ALGO = Fast
+IALGO  = 48
+LREAL  = Auto   
+
+ISPIN=2
+#MAGMOM= 16*5.0     
+NCORE=16 #16or 24
+
+#DFT-D3
+IVDW = 11 #DFT-D3 zero method
+VDW_RADIUS = 50.2 #cutoff radius in ang for pair interaction 
+VDW_CNRADIUS=20.0 #cutoff radius in ang for the calculation of the coordination numbers
+VDW_S6 = 1.0 
+VDW_S8 = 0.722
+VDW_SR = 1.217
+
