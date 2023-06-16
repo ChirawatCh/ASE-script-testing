@@ -19,7 +19,7 @@ from ase.build import molecule
 
 def add_adsorbate(folder_name, adsorbate):
     strings = folder_name.split("-")
-    atoms = read_vasp(folder_name + "/POSCAR")
+    atoms = read_vasp(folder_name + "/POSCAR_Ag_fcc111")
     atoms.center()
     sas = SlabAdsorptionSites(atoms, surface=strings[1],  # Type of surface
                               allow_6fold=False,  # False to 6-fold sub-surface sites underneath fcc hollow sites.
@@ -63,14 +63,14 @@ def add_adsorbate(folder_name, adsorbate):
 
     # iterate over the list of sites and execute the appropriate function for each site['site'] value
     for site in usites:
-        atoms = read_vasp(folder_name + "/POSCAR")
+        atoms = read_vasp(folder_name + "/POSCAR_Ag_fcc111")
         atoms.center()
         site_function = site_functions.get(site['site'], None)
         # Create directory
         sub_foleder_name = folder_name + '-' + adsorbate + '-' + site['site']
         if not os.path.exists("{}/{}/{}".format(folder_name, adsorbate, sub_foleder_name)):
             os.makedirs("{}/{}/{}".format(folder_name, adsorbate, sub_foleder_name))
-        # Create POSCAR file
+        # Create POSCAR_Ag_fcc111 file
         if site_function is not None:
             i, ad_site = get_adsorption_site(atoms, indices=(site['indices']),
                                           surface=strings[1],
@@ -88,7 +88,7 @@ def add_adsorbate(folder_name, adsorbate):
             #print(nbsite['position'])
             #ori = get_mic(site['position'], nbsite['position'], atoms.cell)
             site_function(atoms, site)
-            write_vasp("{}/{}/{}/POSCAR".format(folder_name, adsorbate, sub_foleder_name), atoms)
+            write_vasp("{}/{}/{}/POSCAR_Ag_fcc111".format(folder_name, adsorbate, sub_foleder_name), atoms)
             view(atoms)
         # Copy INCAR, KPOINTS
         shutil.copy("{}/INCAR".format(folder_name), "{}/{}/{}".format(folder_name, adsorbate, sub_foleder_name))

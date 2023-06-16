@@ -10,13 +10,17 @@ from ase.build import bcc100
 from ase.build import bcc110
 
 from ase.visualize import view
-atoms = fcc110('Ag', (4, 4, 4), vacuum=10., periodic=True)
+atoms = fcc110('Ag', (4, 4, 6), vacuum=10., periodic=True)
 atoms.center()
 view(atoms)
 sas = SlabAdsorptionSites(atoms, surface='fcc110',
                            allow_6fold=False,
                            composition_effect=True,
-                           label_sites=True,
-                           surrogate_metal='Cu') # Small cell: Cu, Large cell: Pd or Au
-site = sas.get_site() # Use sas.get_sites() to get all sites
-print(site)
+                           label_sites=True)
+                           # surrogate_metal='Cu') # Small cell: Cu, Large cell: Pd or Au
+
+usites = sas.get_unique_sites()  # Return unique sites
+site_list = []
+for site in usites:
+    site_list.append(site['site'])
+print("Unique sites:", len(usites), "sites", site_list)

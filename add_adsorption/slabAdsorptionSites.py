@@ -6,7 +6,7 @@ atoms = read_vasp("Au-fcc100-4x4/POSCAR")
 atoms.center()
 # view(atoms)
 
-sas = SlabAdsorptionSites(atoms, surface='fcc100',
+sas = SlabAdsorptionSites(atoms, surface='bcc111',
                           allow_6fold=False, # False to 6-fold subsurf sites underneath fcc hollow sites.
                           composition_effect=False, # False for monometallics
                           both_sides=False, # Only consider sites on top of the slab.

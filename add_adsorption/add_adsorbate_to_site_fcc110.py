@@ -5,12 +5,12 @@ from ase.io.vasp import read_vasp
 from acat.build import add_adsorbate_to_site
 
 name = "slab/Au-fcc-110-1x1"
-atoms = read_vasp(name + "/POSCAR")
+atoms = read_vasp(name + "/POSCAR_Ag_fcc111")
 #atoms.center()
 view(atoms)
 
 # name = "Au-fcc110-4x4"
-# atoms = read_vasp(name + "/POSCAR")
+# atoms = read_vasp(name + "/POSCAR_Ag_fcc111")
 # atoms.center()
 #view(atoms)
 

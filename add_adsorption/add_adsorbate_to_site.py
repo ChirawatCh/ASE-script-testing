@@ -5,7 +5,7 @@ from ase.io.vasp import read_vasp
 from acat.build import add_adsorbate_to_site
 
 name = "Au-fcc100-4x4"
-atoms = read_vasp(name + "/POSCAR")
+atoms = read_vasp(name + "/POSCAR_Ag_fcc111")
 atoms.center()
 
 sas = SlabAdsorptionSites(atoms, surface='fcc110', # Type of suface
@@ -24,7 +24,7 @@ for site in usites:
 print("Unique sites:", len(usites), "sites", site_list)
 
 for site in usites:
-    atoms = read_vasp(name + "/POSCAR")
+    atoms = read_vasp(name + "/POSCAR_Ag_fcc111")
     atoms.center()
     if site['site'] == "ontop":
         add_adsorbate_to_site(atoms, adsorbate='H', height=1.5, site=site)

@@ -2,8 +2,7 @@ import csv
 from ase.io import read
 
 
-def measure_bond_distances(filename, element):
-    rows = 10
+def measure_bond_distances(filename, rows, element):
     atoms = read(filename, format='vasp')
 
     # List the index of all atoms
@@ -29,7 +28,7 @@ def measure_bond_distances(filename, element):
     bond_distances.sort(key=lambda x: float(x[3]))
 
     # Print and save the 10 shortest bond distances
-    print("Shortest bond distances from:", element, "element")
+    print("Shortest bond distances from", element, "element")
     for i, (specific_index, atom_index, bond_symbols, distance) in enumerate(bond_distances[:rows]):
         print(f"Bond distance {i + 1}: Atom {specific_index} - Atom {atom_index} ({bond_symbols}): {distance} Å")
 
@@ -43,5 +42,6 @@ def measure_bond_distances(filename, element):
 if __name__ == '__main__':
     filename = "Au-fcc111-4x4/H2/Au-fcc111-4x4-H2-ontop/POSCAR"
     element = "H"
+    rows = 10
 
-    measure_bond_distances(filename, element)
+    measure_bond_distances(filename, rows, element)
